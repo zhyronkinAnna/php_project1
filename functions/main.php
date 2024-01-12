@@ -20,5 +20,4 @@ function sendEmail(){
         $_SESSION['message'] = 'Thank!';
     }
     redirect('/contacts');
-
 }
