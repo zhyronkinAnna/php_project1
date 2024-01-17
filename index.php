@@ -26,6 +26,9 @@ require_once "./functions/main.php";
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/uploads">Uploads</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/reviews">Reviews</a>
                     </li>
                     <li class="nav-item">
@@ -42,6 +45,7 @@ require_once "./functions/main.php";
 
         if (file_exists("./pages/$page.php")) {
             require_once "./pages/$page.php";
+            OldInputs::clear();
         } else {
             echo '<h1>Page Not Found</h1>';
         }
