@@ -11,8 +11,6 @@
 
 
 <?php
-$files = glob('./uploaded/*.{jpg,jpeg,png,gif,webp,avif}', GLOB_BRACE);
-
-dump($files);
-
+// $files = glob('./uploaded/*.{jpg,jpeg,png,gif,webp,avif}', GLOB_BRACE);
+// dump($files);
 ?>
