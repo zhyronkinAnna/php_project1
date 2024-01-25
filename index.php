@@ -45,6 +45,9 @@ require_once "./functions/main.php";
                     <li class="nav-item">
                         <a class="nav-link" href="/login">LogIn</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/manage-sliders">Manage Sliders</a>
+                    </li>
                 </ul>
             </div>
         </div>

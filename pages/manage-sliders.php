@@ -1,0 +1,1 @@
+<h1>Manage Sliders</h1>
