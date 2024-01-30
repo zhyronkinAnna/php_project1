@@ -10,8 +10,8 @@
 </form>
 
  <?php
-$files = glob('./uploaded/small/*.{jpg,jpeg,png,gif,webp,avif}', GLOB_BRACE);
-dump($files);
+    $files = glob('./uploaded/small/*.{jpg,jpeg,png,gif,webp,avif}', GLOB_BRACE);
+    dump($files);
 ?>
 
 
@@ -23,7 +23,7 @@ dump($files);
     ?>
 </div> 
 
- <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function(){
         $('.slick-fade').slick({
             dots: true,

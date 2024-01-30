@@ -7,5 +7,4 @@ return [
         'image/webp', 
         'image/avif'
     ],
-    
 ];

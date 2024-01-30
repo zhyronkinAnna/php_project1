@@ -16,6 +16,13 @@ require_once "./functions/main.php";
     <link rel="stylesheet" type="text/css" href="node_modules/slick-carousel/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="node_modules/slick-carousel/slick/slick-theme.css"/>
     <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
 </head>
 
 <body>
@@ -47,6 +54,9 @@ require_once "./functions/main.php";
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/manage-sliders">Manage Sliders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/galary">Galary</a>
                     </li>
                 </ul>
             </div>

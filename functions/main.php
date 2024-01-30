@@ -156,3 +156,99 @@ function resizeImage(string $path, int $size, bool $crop = false): void
 
 }
 
+function uploadImageTo(): void{
+    $sName = $_POST['sliders-dst'] ?? null;
+    echo $sName;
+    if(empty($sName)){
+        Message::set('Select a slider for uploading');
+        redirect('/manage-sliders');
+    }
+
+    global $config; //////
+    extract($_FILES['file']);
+    if ($error === 4) {
+        Message::set('File is required', 'danger');
+        redirect('/manage-sliders');
+    }
+
+    if ($error !== 0) {
+        Message::set('File is not uploaded', 'danger');
+        redirect('/manage-sliders');
+    }
+
+    if (!in_array($type, $config['allowImageTypes'])) {
+        Message::set('File is not image', 'danger');
+        redirect('/manage-sliders');
+    }
+
+    $fName =  uniqid() . '_' . $name;
+
+    move_uploaded_file($tmp_name, "uploaded/$sName/$fName");
+    resizeImage("uploaded/$sName/$fName", 150, false); // пропорциональное изменение размеров 300 - ширина  
+    Message::set('File is uploaded');
+    redirect('/manage-sliders');
+    
+}
+
+function createSlider() : void {
+   $sName = $_POST['sliderName'] ?? null;
+   if(empty($sName)){
+     Message::set('Enter new slider name');
+     redirect('/manage-sliders');
+   }
+
+   $allSliders = glob('uploaded/*');
+
+   if(in_array("uploaded/$sName", $allSliders)){ /////
+      Message::set('Slider with name "'.$sName .'" already exists');
+      redirect('/manage-sliders');
+   }
+
+   mkdir("uploaded/$sName");
+   Message::set("Slider $sName created!");
+}
+
+function deleteSlider(): void {
+    $slider = $_POST['slider'] ?? '';
+    if(empty($slider)){
+        Message::set('Select a slider');
+        redirect('/manage-sliders');
+    }
+
+    removeDir("uploaded/$slider");
+}
+
+function removeDir($path){
+    if(is_file($path)){
+        unlink($path);
+        Message::set('File removed successfully');
+        return;
+    }
+    elseif(is_dir($path)){
+        $files = glob("$path/*");
+        foreach($files as $file){
+            removeDir($file);
+        }
+
+        rmdir($path);
+        Message::set('Directory removed successfully');
+        return;
+    }
+}
+
+
+function renderSlider($slider) : void {
+    $files = glob("$slider/medium/*");
+    if (empty($files)) {
+        return;
+    }
+
+    $sName = basename($slider);
+    $bigPhotoes = glob("$slider/*");
+
+    foreach ($files as $key=>$value) {
+        echo '<a href="' . $bigPhotoes[$key] . '" data-fancybox="' . $sName . '">
+                  <img src="' . $value . '" alt="Image">
+              </a>';
+    }
+}
