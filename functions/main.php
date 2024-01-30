@@ -164,7 +164,7 @@ function uploadImageTo(): void{
         redirect('/manage-sliders');
     }
 
-    global $config; //////
+    global $config; 
     extract($_FILES['file']);
     if ($error === 4) {
         Message::set('File is required', 'danger');
@@ -184,10 +184,9 @@ function uploadImageTo(): void{
     $fName =  uniqid() . '_' . $name;
 
     move_uploaded_file($tmp_name, "uploaded/$sName/$fName");
-    resizeImage("uploaded/$sName/$fName", 150, false); // пропорциональное изменение размеров 300 - ширина  
+    resizeImage("uploaded/$sName/$fName", 150, false);
     Message::set('File is uploaded');
     redirect('/manage-sliders');
-    
 }
 
 function createSlider() : void {
@@ -199,7 +198,7 @@ function createSlider() : void {
 
    $allSliders = glob('uploaded/*');
 
-   if(in_array("uploaded/$sName", $allSliders)){ /////
+   if(in_array("uploaded/$sName", $allSliders)){ 
       Message::set('Slider with name "'.$sName .'" already exists');
       redirect('/manage-sliders');
    }
@@ -236,7 +235,6 @@ function removeDir($path){
     }
 }
 
-
 function renderSlider($slider) : void {
     $files = glob("$slider/medium/*");
     if (empty($files)) {
@@ -247,8 +245,10 @@ function renderSlider($slider) : void {
     $bigPhotoes = glob("$slider/*");
 
     foreach ($files as $key=>$value) {
-        echo '<a href="' . $bigPhotoes[$key] . '" data-fancybox="' . $sName . '">
-                  <img src="' . $value . '" alt="Image">
-              </a>';
+        if(!is_dir($value)){
+            echo '<a href="' . $bigPhotoes[$key] . '" data-fancybox="' . $sName . '">
+            <img src="' . $value . '" alt="Image">
+        </a>';
+        }
     }
 }

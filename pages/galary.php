@@ -1,8 +1,6 @@
 <h1>Galary</h1>
 <hr>
 
-
-
     <?php
         $sliders = glob("uploaded/*");
         foreach($sliders as $slider):
@@ -14,7 +12,6 @@
              <?php endif; 
         endforeach ?>
  
-
 <script type="text/javascript">
     $(document).ready(function(){
         $('.slick-fade').slick({
@@ -28,10 +25,7 @@
             slidesToScroll: 1,
             variableWidth: true,
         });
+
+        Fancybox.bind("[data-fancybox]", {}); 
     });
-
-    Fancybox.bind("[data-fancybox]", {
-  // Your custom options
-    }); 
-
 </script> 

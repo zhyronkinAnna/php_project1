@@ -2,7 +2,6 @@
 <hr>
 <h3>Create new slider</h3>
 <form action="/manage-sliders" method="post">
-    <!-- <label for=""></label> -->
     <input type="text" name="sliderName" placeholder="Enter slider name">
     <button name="action" value="createSlider">Create</button>
     <?php Message::show() ?>
@@ -13,10 +12,10 @@
     <select name="sliders-dst" id="sliders-dst">
     <option value="" selected disabled>Select Slider</option>
         <?php
-          $allSliders = scandir("uploaded", SCANDIR_SORT_ASCENDING); /// uploaded 
+          $allSliders = scandir("uploaded", SCANDIR_SORT_ASCENDING); 
           $allSliders = array_diff($allSliders, ['.', '..']);
           foreach($allSliders as $slider){
-            if(is_dir("uploaded/$slider")){ ///uploaded
+            if(is_dir("uploaded/$slider")){ 
                 echo '<option value="' . $slider . '">' . $slider . '</option>';
             }
           }
@@ -33,11 +32,11 @@
 <form action="/manage-sliders" method="post"> 
     <select name="slider" id="slider">
     <option value="" selected disabled>Select Slider</option> 
-        <?php //////// 
-          $allSliders = scandir("uploaded", SCANDIR_SORT_ASCENDING); /// uploaded 
+        <?php 
+          $allSliders = scandir("uploaded", SCANDIR_SORT_ASCENDING);
           $allSliders = array_diff($allSliders, ['.', '..']);
           foreach($allSliders as $slider){
-            if(is_dir("uploaded/$slider")){ ///uploaded
+            if(is_dir("uploaded/$slider")){ 
                 echo '<option value="' . $slider . '">' . $slider . '</option>';
             }
           }
